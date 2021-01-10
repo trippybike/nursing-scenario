@@ -1,0 +1,5 @@
+<div class="btn-group-vertical" role="group">
+    <button *ngFor="let response of currentScene.responses" (click)="changeVideo(response)" class="my-1 btn btn-primary btn-lg">
+      {{response.response}}
+    </button>
+</div>

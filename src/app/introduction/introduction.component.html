@@ -1,0 +1,20 @@
+  <vg-player (onPlayerReady)="onPlayerReady($event)">
+    <video
+      [src]="videoSource"
+      type="video/mp4"
+      [vgMedia]="introMedia"
+      #introMedia
+      id="introVideo"
+      preload="auto"
+    ></video>
+    <div [hidden]="overlayHidden" class="player-overlay" >
+      <div class="jumbotron overlay p-xl-5">
+        <h1 class="display-4 text-center">Interactive Nursing Scenario</h1>
+        <p class="lead text-center">Click the button below to begin the scenario</p>
+        <hr class="my-4" />
+        <div class="mx-auto">
+          <button type="button" class="btn btn-primary btn-lg" (click)="playVideo()">Begin Scenario</button>
+        </div>
+      </div>
+    </div>
+  </vg-player>

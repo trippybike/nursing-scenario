@@ -1,0 +1,8 @@
+<div class="btn-group-vertical" role="group">
+  <button *ngIf="canContinue" (click)="changeScene(currentSceneId+1)" class="my-1 btn btn-primary btn-lg">
+    Continue
+  </button>
+  <button (click)="changeScene(currentSceneId)" class="my-1 btn btn-primary btn-lg">
+    Try a Different Response
+  </button>
+</div>
