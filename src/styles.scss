@@ -1,1 +1,73 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: fira;
+  src: url(assets/fonts/firasans.ttf) format('truetype');
+}
+
+
+vg-player, p, h3 {
+  font-family: 'fira';
+}
+
+hr {
+  color: #212529;
+}
+
+button {
+  font-family: 'fira' !important;
+}
+
+.jumbotron.overlay {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  justify-content: space-around;
+  background-color: #eef0ff;
+
+  .btn-group-vertical {
+    margin: auto;
+  }
+
+  .response-buttons {
+    display: grid;
+  }
+}
+
+.btn-group-vertical>button {
+  border-radius: 5px !important;
+}
+
+html {
+  font-size: 1.5vw;
+}
+
+.player-overlay {
+  height: 100%;
+    width: 100%;
+    position: absolute;
+    background-color: #f0f8ff9c;
+}
+
+.btn-lg {
+  font-size: 1.05rem !important;
+}
+
+body {
+  height: 100vh;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+
+vg-player video {
+  background-color: white;
+  border-radius: 10px;
+}
+
+vg-player {
+  background-color: white !important;
+
+  border-radius: 10px;
+}
