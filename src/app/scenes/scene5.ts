@@ -8,7 +8,7 @@ export const scene5: SceneModel = {
       codeMessage:
         "The nurse is assessing the patient’s safety while using drugs as a form of harm reduction. Any positive changes or behaviors should be acknowledged and praised. By asking the client what they presently do to keep safe, the nurse is able to meet the patient where they are at and provide further education and information as needed. The nurse provided information about how to get treatment if and when the patient was ready. This allows the patient to know where to go for help and also provides the patient with another opportunity to engage in treatment without feeling coerced.",
       correct: true,
-      src: "scene4/r1.m4v",
+      src: "scene5/r1.m4v",
     },
     {
       response:
@@ -16,7 +16,7 @@ export const scene5: SceneModel = {
       codeMessage:
         "The nurse’s statement doesn’t promote discussion about the patient’s way of keeping safe while using drugs. This is a missed opportunity to assess the patient’s risk factors and to provide harm reduction education.",
       correct: false,
-      src: "scene4/r2.m4v",
+      src: "scene5/r2.m4v",
     },
     {
       response:
@@ -24,7 +24,7 @@ export const scene5: SceneModel = {
       codeMessage:
         "This is not a therapeutic message. The nurse used stigmatizing language and was judgmental of the patient. This statement does nothing to build rapport and instead damages the relationship between the patient and health care providers.",
       correct: false,
-      src: "scene4/r3.m4v",
+      src: "scene5/r3.m4v",
     },
   ],
   situation:

@@ -2,7 +2,7 @@
     <h1 class="display-4 text-center">{{overlayTitle}}</h1>
     <p class="lead">{{overlayText}}</p>
   <hr class="my-4">
-  <div class="mx-auto" *ngIf="hasResponded; else notRetry">
+  <div class="mx-auto row scene-wrapper" *ngIf="hasResponded; else notRetry">
     <app-scene-buttons [currentSceneId]="currentScene.sceneId" [canContinue]="correct"></app-scene-buttons>
   </div>
   <ng-template #notRetry>

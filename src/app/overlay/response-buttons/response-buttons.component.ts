@@ -13,6 +13,7 @@ export class ResponseButtonsComponent {
   constructor(public changeResponseService: ChangeResponseService) { }
 
   changeVideo(src: string): void {
+    console.log(src);
     this.changeResponseService.onResponseButtonClick(src);
   }
 
