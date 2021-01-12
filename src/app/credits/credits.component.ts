@@ -6,8 +6,4 @@ import { Component } from "@angular/core";
   styleUrls: ["./credits.component.scss"],
 })
 export class CreditsComponent {
-  remote: any;
-  window: any;
-  constructor() {
-  }
 }

@@ -1,4 +1,4 @@
-<div class="container-fluid p-4">
+<div [ngStyle]="{'width.px': screenWidth, 'height.px': screenHeight}" class="responsive-container">
   <router-outlet></router-outlet>
   <div class="row">
     <div class="col-sm-4"></div>

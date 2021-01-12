@@ -1,6 +1,6 @@
-  <vg-player (onPlayerReady)="onPlayerReady($event)">
+  <vg-player  (onPlayerReady)="onPlayerReady($event)">
     <video [src]="videoSource" type="video/mp4" [vgMedia]="media" #media id="singleVideo" preload="true" autoplay ></video>
-    <div [hidden]="responseOngoing" class="player-overlay">
-      <app-overlay [currentSceneId]="sceneId" [hasResponded]="hasResponded" [currentScene]="currentScene" [currentResponse]="currentResponse" ></app-overlay>
-    </div>
   </vg-player>
+  <div [hidden]="responseOngoing" class="player-overlay">
+    <app-overlay [currentSceneId]="sceneId" [hasResponded]="hasResponded" [currentScene]="currentScene" [currentResponse]="currentResponse" ></app-overlay>
+  </div>

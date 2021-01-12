@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { VgApiService } from "@videogular/ngx-videogular/core";
-import { Observable, Subscription } from "rxjs";
+import { Observable } from "rxjs";
 import { ChangeResponseService } from "../overlay/response-buttons/select-response.service";
 import { ChangeSceneService } from "../overlay/scene-buttons/change-scene.service";
 import { scenes } from "../scenes/scene-data";
@@ -12,9 +12,13 @@ import { SceneModel, ResponseModel } from "../scenes/scenes-model";
   templateUrl: "./main.component.html",
 })
 export class MainComponent implements OnInit {
+
+
+
   title = "nursing-sim";
   api: VgApiService;
   autoPlay: false;
+  firstInit: boolean;
 
   sceneId: number;
 
@@ -32,8 +36,8 @@ export class MainComponent implements OnInit {
   currentResponseChange: Observable<any>;
   vidEndSubscription: any;
   vidReadySubscription: any;
-  responsesSubscription: Subscription;
-  sceneSubscription: Subscription;
+  // responsesSubscription: Subscription;
+  // sceneSubscription: Subscription;
 
   correctResponse: boolean;
 
@@ -41,11 +45,16 @@ export class MainComponent implements OnInit {
     private getResponseService: ChangeResponseService,
     private getSceneService: ChangeSceneService,
     private router: Router
-  ) {}
+  ) {
+    this.firstInit = true;
+    this.currentScene = scenes[0];
+    // this.screenWidth = 400;
+  }
 
   ngOnInit(): void {
     this.initializeComponent();
   }
+
 
   initializeComponent(): void {
     // this.videoSource = "./../assets/videos/".concat(this.scenes[0].responses[0].src); // disable for electron build
@@ -55,8 +64,10 @@ export class MainComponent implements OnInit {
     this.overlayIsHidden = false;
     this.currentScene = scenes[0];
     this.hasResponded = false;
-    this.responsesSubscription = this.subscribeToResponses();
-    this.sceneSubscription = this.subscribeToSceneChanges();
+    this.subscribeToResponses();
+    this.subscribeToSceneChanges();
+    // this.responsesSubscription = this.subscribeToResponses();
+    // this.sceneSubscription = this.subscribeToSceneChanges();
     this.correctResponse = null;
     if (this.api !== undefined) {
       console.log("API is not null", this.api);
@@ -66,20 +77,23 @@ export class MainComponent implements OnInit {
   }
 
   onPlayerReady(api: VgApiService): void {
-    this.api = api;
+    if (this.firstInit) {
+      this.api = api;
+      this.firstInit = false;
+    }
   }
 
   chooseResponse(): void {
     this.api.play();
   }
 
-  subscribeToSceneChanges(): Subscription {
-    return this.getSceneService.invokeSceneChange.subscribe((sceneId) => {
-      if (sceneId < 4) {
+  subscribeToSceneChanges(): void {
+    this.getSceneService.invokeSceneChange.subscribe((sceneId) => {
+      if (sceneId < 5) {
         this.hasResponded = false;
         this.currentScene = scenes[sceneId];
         this.sceneId = sceneId;
-        this.responsesSubscription = this.subscribeToResponses();
+        this.subscribeToResponses();
       } else {
         console.debug('Reached the end of the scenario.');
         this.router.navigate(['/end']);
@@ -87,28 +101,26 @@ export class MainComponent implements OnInit {
     });
   }
 
-  subscribeToResponses(): Subscription {
-    return this.getResponseService.invokeResponseSelection.subscribe(
+  subscribeToResponses(): void {
+    this.getResponseService.invokeResponseSelection.subscribe(
       (response) => {
-        this.responsesSubscription.unsubscribe();
         this.responseOngoing = true;
         this.videoSource = "./../assets/videos/".concat(response.src); //disable for electron build
         console.log(this.videoSource);
-        this.vidReadySubscription = this.api
+        this.api
           .getMediaById("singleVideo")
           .subscriptions.canPlay.subscribe(() => {
-            this.vidEndSubscription = this.api
+            this.api
               .getMediaById("singleVideo")
               .subscriptions.ended.subscribe(() => {
                 this.responseOngoing = false;
                 this.hasResponded = true;
                 this.currentResponse = response;
-                this.vidEndSubscription.unsubscribe();
-                this.vidReadySubscription.unsubscribe();
               });
             this.api.getMediaById("singleVideo").play();
           });
       }
     );
   }
+
 }

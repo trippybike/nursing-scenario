@@ -1,3 +1,4 @@
+import { HostListener } from "@angular/core";
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { VgApiService } from "@videogular/ngx-videogular/core";

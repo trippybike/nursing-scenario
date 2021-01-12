@@ -38,9 +38,10 @@ export class OverlayComponent implements OnInit {
 
   @Input()
   set hasResponded(responded: boolean) {
+    this._hasResponded = responded;
+
     if (this.initialized) {
-      this._hasResponded = responded;
-      if (responded) {
+      if (this._hasResponded) {
         return;
       } else {
         this.overlayText = this.currentScene.situation;
@@ -57,6 +58,7 @@ export class OverlayComponent implements OnInit {
   @Input()
   set currentResponse(response: ResponseModel) {
     console.log("Current response changed to: ", response);
+    console.log("hasResponded: ", this.hasResponded);
     if (this.hasResponded) {
       this.correct = response.correct;
       this.needsRetry = !this.correct;
