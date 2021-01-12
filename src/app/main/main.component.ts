@@ -105,7 +105,7 @@ export class MainComponent implements OnInit {
     this.getResponseService.invokeResponseSelection.subscribe(
       (response) => {
         this.responseOngoing = true;
-        this.videoSource = "./../assets/videos/".concat(response.src); //disable for electron build
+        this.videoSource = "assets/videos/".concat(response.src); //disable for electron build
         console.log(this.videoSource);
         this.api
           .getMediaById("singleVideo")

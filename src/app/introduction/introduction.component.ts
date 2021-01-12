@@ -16,7 +16,7 @@ export class IntroductionComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit(): void {
-    this.videoSource = "./../assets/videos/OL.mp4"; //disable for electron build
+    this.videoSource = "assets/videos/OL.mp4"; //disable for electron build
     this.beginPlaying = false;
     this.overlayHidden = false;
   }
